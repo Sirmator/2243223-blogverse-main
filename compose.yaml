@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./DA-blogverse-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./DA-blogverse-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=blogverse
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blogverse
+    ports:
+      - "3306:3306"
