@@ -1,5 +1,5 @@
 services:
- 
+
   db:
     image: mysql
     restart: unless-stopped
@@ -17,12 +17,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
- 
+
   backend:
-    image: eliesoualhaci/2243223-blogverse-backend:${BACKEND_VERSION:-latest}
     build:
-      context: ./2243223-blogverse-backend
+      context: ./2243223-blogverse-backend:${BACKEND_VERSION:-latest}
       dockerfile: Dockerfile
+    image: eliesoualhaci/tp2-2243223-blogverse-backend
     restart: unless-stopped
     environment:
       DB_HOST: db
@@ -30,36 +30,31 @@ services:
       DB_NAME: ${MYSQL_DATABASE}
       DB_USER: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
-      PORT: ${BACKEND_PORT:-3000}
-      JWT_SECRET: ${JWT_SECRET}
-      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      PORT: 3001
     networks:
       - blogverse-network
     ports:
-      - "${BACKEND_PORT:-3000}:3000"
+      - "3001:3001"
     depends_on:
       db:
         condition: service_healthy
- 
+
   frontend:
-    image: eliesoualhaci/2243223-blogverse-frontend:${FRONTEND_VERSION:-latest}
     build:
       context: ./2243223-blogverse-frontend
       dockerfile: Dockerfile
-      args:
-        VITE_API_URL: ${VITE_API_URL}
+    image: eliesoualhaci/tp2-2243223-blogverse-frontend
     restart: unless-stopped
     networks:
       - blogverse-network
     ports:
-      - "${FRONTEND_PORT:-8080}:80"
+      - "3000:3000"
     depends_on:
       - backend
- 
+
 volumes:
   db_data:
- 
+
 networks:
   blogverse-network:
     driver: bridge
- 
