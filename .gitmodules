@@ -1,0 +1,6 @@
+[submodule "2243223-blogverse-frontend"]
+	path = 2243223-blogverse-frontend
+	url = https://github.com/Sirmator/2243223-blogverse-frontend.git
+[submodule "2243223-blogverse-backend"]
+	path = 2243223-blogverse-backend
+	url = https://github.com/Sirmator/2243223-blogverse-backend.git
