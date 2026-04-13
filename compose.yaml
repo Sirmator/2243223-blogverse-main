@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./DA-blogverse-frontend
+    build: ./2243223-blogverse-frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
 
   backend:
-    build: ./DA-blogverse-backend
+    build: ./2243223-blogverse-backend
     ports:
       - "3001:3001"
     environment:
