@@ -19,7 +19,7 @@ services:
       retries: 5
  
   backend:
-    image: eliesoualhaci/2243223-blogverse-backend:${BACKEND_VERSION:-latest}
+    image: eliesoualhaci/tp2-2243223-blogverse-backend:${BACKEND_VERSION:-latest}
     build:
       context: ./2243223-blogverse-backend
       dockerfile: Dockerfile
@@ -42,7 +42,7 @@ services:
         condition: service_healthy
  
   frontend:
-    image: eliesoualhaci/2243223-blogverse-frontend:${FRONTEND_VERSION:-latest}
+    image: eliesoualhaci/tp2-2243223-blogverse-frontend:${FRONTEND_VERSION:-latest}
     build:
       context: ./2243223-blogverse-frontend
       dockerfile: Dockerfile
